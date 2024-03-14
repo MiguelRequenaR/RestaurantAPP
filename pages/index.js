@@ -1,6 +1,15 @@
+import Layout from "@/layout/Layout";
+import useRest from "@/hooks/useRest";
 
 export default function Home() {
-  return <h1>Next JS</h1>;
+
+  const { categoriaActual } = useRest();
+
+  return (
+    <Layout pagina={`Menú ${categoriaActual.nombre}`}>
+      <h1 className="text-4xl font-black">{categoriaActual.nombre}</h1>
+    </Layout>
+  );
 }
 
 //Consulta a la base de datos
