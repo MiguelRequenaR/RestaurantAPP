@@ -7,6 +7,8 @@ const RestProvider = ({children}) => {
 
     const [categorias, setCategorias] = useState([]);
     const [categoriaActual, setCategoriaActual] = useState({}); 
+    const [producto, setProducto] = useState({}); 
+    const [modal, setModal] = useState(false); 
 
     // Obtener categorias, acceder a los datos
     const obtenerCategorias = async () => {
@@ -28,12 +30,24 @@ const RestProvider = ({children}) => {
         setCategoriaActual(categoria[0]);
     }
 
+    const handleSetProducto = producto => {
+        setProducto(producto);
+    }
+
+    const handleChangeModal = () => {
+        setModal(!modal);
+    }
+
     return(
         <RestContext.Provider 
             value={{
                 categorias,
                 categoriaActual,
-                handleClickCategoria
+                handleClickCategoria,
+                handleSetProducto,
+                producto,
+                modal,
+                handleChangeModal
             }}
         >
             {children}

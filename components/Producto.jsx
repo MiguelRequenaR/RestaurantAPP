@@ -1,7 +1,10 @@
 import Image from "next/image"
 import { formatearDinero } from "@/helpers";
+import useRest from "@/hooks/useRest";
 
 const Producto = ({producto}) => {
+
+    const { handleSetProducto, handleChangeModal } = useRest();
 
     const { nombre, imagen, precio } = producto;
     return (
@@ -18,6 +21,16 @@ const Producto = ({producto}) => {
                     {formatearDinero(precio)}
                 </p>
             </div>
+            <button
+                type="button"
+                className="bg-amber-600 hover:bg-amber-800 text-white w-full mt-5 p-3 uppercase font-bold rounded-lg"
+                onClick={() => {
+                    handleChangeModal();
+                    handleSetProducto(producto);
+                }}
+            >
+                Agregar
+            </button>
         </div>
     )
 }
