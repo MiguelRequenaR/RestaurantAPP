@@ -23,7 +23,7 @@ const Producto = ({producto}) => {
             </div>
             <button
                 type="button"
-                className="bg-amber-600 hover:bg-amber-800 text-white w-full mt-5 p-3 uppercase font-bold rounded-lg"
+                className="bg-amber-600 hover:bg-amber-800 text-white w-full mt-5 p-3 uppercase font-bold rounded-lg text-xl"
                 onClick={() => {
                     handleChangeModal();
                     handleSetProducto(producto);

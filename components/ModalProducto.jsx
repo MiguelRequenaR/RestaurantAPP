@@ -1,12 +1,24 @@
 import Image from "next/image"
 import useRest from "@/hooks/useRest"
 import { formatearDinero } from "@/helpers"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const ModalProducto = () => {
 
-    const { producto, handleChangeModal } = useRest();
+    const { producto, handleChangeModal, handleAgregarPedido, pedido } = useRest();
     const [cantidad, setCantidad] = useState(1);
+    const [edicion, setEdicion] = useState(false);
+
+    //Comprobar si el modal actual esta en el pedido
+    useEffect(() => {
+        if(pedido.some((pedidoState) => pedidoState.id === producto.id)) {
+            const productoEdicion = pedido.find(pedidoState => pedidoState.id === producto.id);
+            setEdicion(true);
+            setCantidad(productoEdicion.cantidad)
+        }else{
+            setEdicion(false);
+        }
+    }, [producto, pedido])
 
     return (
         <div className="md:flex gap-10">
@@ -93,6 +105,15 @@ const ModalProducto = () => {
                         </svg>
                     </button>
                 </div>
+                <button
+                    type="button"
+                    className="
+                    bg-amber-600 hover:bg-amber-800 text-white 
+                    mt-5 py-2 px-5 uppercase font-bold rounded-lg"
+                    onClick={() => handleAgregarPedido({...producto, cantidad})}
+                >
+                    {edicion ? 'Guardar cambios' : 'Agregar al pedido'}
+                </button>
             </div>
         </div>
     )
