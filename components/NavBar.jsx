@@ -46,7 +46,7 @@ const NavBar = () => {
             </div>
             <div className="bg-gray-100 mb-10">
                 <div 
-                    className="rounded-full bg-amber-500 text-xs leading-none h-2 text-center text-white"
+                    className="rounded-full bg-amber-500 text-xs leading-none h-2 text-center text-white progresoz"
                     style={{width: `${calcularProgreso()}%`}}
                 >
                 </div>
